@@ -3,6 +3,7 @@ import * as bcrypt from "bcrypt"
 
 import { UserInfo } from "../../user/entities/user-info.entity";
 import { Exclude } from "class-transformer";
+import { Todo } from "src/todo/entities/todo.entity";
 
 @Entity()
 @Unique(['username'])
@@ -23,6 +24,9 @@ export class User extends BaseEntity {
     @Column({ nullable: true })
     @Exclude()
     public hashedRefreshToken?: string
+
+    @OneToMany(type => Todo, Todo => Todo.user, { eager: true })
+    todo: Todo[]
 
     @OneToOne(type => UserInfo, { eager: true })
     @JoinColumn()

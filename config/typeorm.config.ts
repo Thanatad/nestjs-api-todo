@@ -13,14 +13,14 @@ const typeOrmConfig: any = {
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    synchronize: process.env.DB_SYNCHRONIZE,
-    entities: ["dist/**/*.entity{.ts,.js}", "src/**/*.entity{.ts,.js}"],
+    synchronize: false,
+    entities: [`${__dirname}/../**/*.entity.{js,ts}`],
     migrationsRun: false,
     logging: true,
     migrationsTableName: "migration",
-    migrations: ["dist/migrations/*{.ts,.js}", "src/migrations/*{.ts,.js}"],
+    migrations: [`${__dirname}/../src/migration/*.{js,ts}`],
     cli: {
-        migrationsDir: "src/migrations",
+        migrationsDir: `${__dirname}/../src/migration`,
     },
 }
 
